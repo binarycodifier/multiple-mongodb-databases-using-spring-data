@@ -18,11 +18,10 @@ Databases
 Collection names are the same as the database names.
 
 
-Branch "spring-data-mongodb-1.0.0.RELEASE_dbref_association"
+Branch "spring-data-mongodb-1.0.0.RELEASE_dbref_association_same_database"
 -------------------------------------------------------------
-The product to market association is by id, meaning that product is saved in it's own database and referenced by id in the market collection.
-This is exactly what we want, however tests fail when retrieving the associated product entities on market.
-As expected because this should be resolved in spring-data-mongodb-1.1.0.M2, see DATAMONGO-424 in [spring-data-mongodb-1.1.0.M2 changelog](http://static.springsource.org/spring-data/data-mongodb/docs/1.1.0.M2/changelog.txt)
+The product to market association is by id, meaning that product is saved in it's the same database and referenced by id in the market collection.
+This is exactly what we want and works when retrieving the associated product entities on market and both are in the same database.
 
 
 References:

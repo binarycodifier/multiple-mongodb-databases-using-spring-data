@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @ContextConfiguration("classpath:/application-context.xml")
@@ -48,6 +49,7 @@ public class MultipleDataBaseTest extends AbstractIntegrationTests {
         Market savedMarket = marketRepository.findOne(fruitMarket.getId());
         assertThat(savedMarket.getId(), is(fruitMarket.getId()));
         assertThat(savedMarket.getProducts().size(), is(3));
+        assertThat(savedMarket.getProducts().get(0), is(notNullValue()));
     }
 
     @Test
@@ -72,5 +74,6 @@ public class MultipleDataBaseTest extends AbstractIntegrationTests {
         Market savedMarket = marketRepository.findOne(iceCreamMarket.getId());
         assertThat(savedMarket.getId(), is(iceCreamMarket.getId()));
         assertThat(savedMarket.getProducts().size(), is(2));
+        assertThat(savedMarket.getProducts().get(0), is(notNullValue()));
     }
 }

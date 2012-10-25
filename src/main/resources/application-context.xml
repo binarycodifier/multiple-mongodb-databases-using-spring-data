@@ -6,9 +6,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/data/mongo
-                           http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+                           http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
                            http://www.springframework.org/schema/data/repository
-                           http://www.springframework.org/schema/data/repository/spring-repository-1.0.xsd">
+                           http://www.springframework.org/schema/data/repository/spring-repository.xsd">
 
     <mongo:mongo id="mongoInstance" host="127.0.0.1" port="27017"/>
 

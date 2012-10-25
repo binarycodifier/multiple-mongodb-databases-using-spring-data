@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/data/mongo
+                           http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <mongo:mongo id="mongoInstance" host="127.0.0.1" port="27017"/>
+
+    <bean id="marketTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoInstance"/>
+        <constructor-arg name="databaseName" value="market"/>
+    </bean>
+
+    <bean id="productTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoInstance"/>
+        <constructor-arg name="databaseName" value="product"/>
+    </bean>
+
+    <mongo:repositories base-package="org.binary.codifier.example.repository">
+        <mongo:repository id="marketRepository" mongo-template-ref="marketTemplate"/>
+        <mongo:repository id="productRepository" mongo-template-ref="productTemplate"/>
+    </mongo:repositories>
+
+</beans>

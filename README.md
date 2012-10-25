@@ -18,6 +18,12 @@ Databases
 Collection names are the same as the database names.
 
 
+Branch "spring-data-mongodb-1.0.0.RELEASE_inline_association"
+-------------------------------------------------------------
+The product to market association is in-line, meaning that product is saved within the market collection as well as in it's own database.
+This defeats the purpose somewhat, but project demonstrates that product can also be stored on it's own.
+
+
 References:
 ----------
 * [MongoDB] (http://www.mongodb.org)

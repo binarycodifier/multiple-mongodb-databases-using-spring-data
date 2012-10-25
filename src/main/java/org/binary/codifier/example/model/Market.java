@@ -12,7 +12,7 @@ import java.util.List;
 public class Market {
     @Id
     private ObjectId id;
-    @DBRef
+    @DBRef(db = "product")
     private List<Product> products;
 
     public ObjectId getId() {

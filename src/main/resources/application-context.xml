@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/data/mongo
-                           http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+                           http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+                           http://www.springframework.org/schema/data/repository
+                           http://www.springframework.org/schema/data/repository/spring-repository-1.0.xsd">
 
     <mongo:mongo id="mongoInstance" host="127.0.0.1" port="27017"/>
 
@@ -19,9 +22,12 @@
         <constructor-arg name="databaseName" value="product"/>
     </bean>
 
-    <mongo:repositories base-package="org.binary.codifier.example.repository">
-        <mongo:repository id="marketRepository" mongo-template-ref="marketTemplate"/>
-        <mongo:repository id="productRepository" mongo-template-ref="productTemplate"/>
+    <mongo:repositories base-package="org.binary.codifier.example.repository" mongo-template-ref="marketTemplate">
+        <repository:exclude-filter type="regex" expression=".*ProductRepository" />
+    </mongo:repositories>
+
+    <mongo:repositories base-package="org.binary.codifier.example.repository" mongo-template-ref="productTemplate">
+        <repository:exclude-filter type="regex" expression=".*MarketRepository" />
     </mongo:repositories>
 
 </beans>

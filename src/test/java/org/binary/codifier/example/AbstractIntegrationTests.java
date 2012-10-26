@@ -1,5 +1,7 @@
 package org.binary.codifier.example;
 
+import com.mongodb.Mongo;
+import org.binary.codifier.example.model.Currency;
 import org.binary.codifier.example.model.Market;
 import org.binary.codifier.example.model.Product;
 import org.junit.Before;
@@ -12,18 +14,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public abstract class AbstractIntegrationTests {
 
     @Autowired
+    Mongo mongoInstance;
+
+    @Autowired
     MongoOperations marketTemplate;
 
     @Autowired
     MongoOperations productTemplate;
 
+    @Autowired
+    MongoOperations currencyTemplate;
+
     Market fruitMarket;
     Product apple, orange, banana;
+    Currency dollars, pounds, euros;
 
     @Before
     public void setUp() {
         deleteAllCollections();
 
+        createCurrencies();
         createMarket();
         createProducts();
     }
@@ -31,6 +41,18 @@ public abstract class AbstractIntegrationTests {
     private void deleteAllCollections() {
         marketTemplate.dropCollection(Market.class);
         productTemplate.dropCollection(Product.class);
+        currencyTemplate.dropCollection(Currency.class);
+    }
+
+    private void createCurrencies() {
+        dollars = new Currency("$");
+        currencyTemplate.save(dollars);
+
+        pounds = new Currency("£");
+        currencyTemplate.save(pounds);
+
+        euros = new Currency("€");
+        currencyTemplate.save(euros);
     }
 
     private void createMarket() {

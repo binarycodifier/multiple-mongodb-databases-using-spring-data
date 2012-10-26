@@ -22,12 +22,24 @@
         <constructor-arg name="databaseName" value="product"/>
     </bean>
 
+    <bean id="currencyTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoInstance"/>
+        <constructor-arg name="databaseName" value="currency"/>
+    </bean>
+
     <mongo:repositories base-package="org.binary.codifier.example.repository" mongo-template-ref="marketTemplate">
         <repository:exclude-filter type="regex" expression=".*ProductRepository" />
+        <repository:exclude-filter type="regex" expression=".*CurrencyRepository" />
     </mongo:repositories>
 
     <mongo:repositories base-package="org.binary.codifier.example.repository" mongo-template-ref="productTemplate">
         <repository:exclude-filter type="regex" expression=".*MarketRepository" />
+        <repository:exclude-filter type="regex" expression=".*CurrencyRepository" />
+    </mongo:repositories>
+
+    <mongo:repositories base-package="org.binary.codifier.example.repository" mongo-template-ref="currencyTemplate">
+        <repository:exclude-filter type="regex" expression=".*MarketRepository" />
+        <repository:exclude-filter type="regex" expression=".*ProductRepository" />
     </mongo:repositories>
 
 </beans>

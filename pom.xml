@@ -16,7 +16,7 @@
         <repository>
             <id>repo.springsource.org</id>
             <name>repo.springsource.org-releases</name>
-            <url>http://repo.springsource.org/libs-snapshot-local</url>
+            <url>http://repo.springsource.org/libs-release-local</url>
         </repository>
     </distributionManagement>
 
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
-            <version>1.2.0.BUILD-SNAPSHOT</version>
+            <version>1.1.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>

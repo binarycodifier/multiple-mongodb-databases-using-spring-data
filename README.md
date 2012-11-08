@@ -24,19 +24,14 @@ Issue:
 ------
 There is an issue with retrieving DfRef associated objects in separate databases (persisting works fine).
 The DbRef can be retrieved from the same database, however cannot be retrieved from another separate database.
-It appears that there is an issue at the MongoDB driver (2.9.1) when retrieving, but will do more verification.
-
-
-Options to fix:
---------------
-* Fork the MongoDB java driver and change mechanics to get the correct DB when retrieving associated DbRef (preferred).
-* Fork spring data MongoDB and change call routines to explicit fetch method with specific DB injection.
+There is an issue at the MongoDB driver (2.9.1) as it does not truly support multiple DB's.
+I've patched the driver [see my MongoDB driver fork 2.10.0-PATCH](https://github.com/binarycodifier/mongo-java-driver)
 
 
 Dependency versions:
 -------------------
 * Spring Data MongoDb 1.1.1.RELEASE
-* Mongo Java Driver 2.9.1
+* Mongo Java Driver 2.10.0-PATCH (forked)
 * Spring Framework 3.1.2.RELEASE
 
 
